@@ -13,4 +13,8 @@ public class UserService {
     public User getUser(String username) {
         return userRepository.findByUsername(username);
     }
+    public User getUserByToken(String token) {
+        return userRepository.findByToken(token);
+    }
+    public void addUser(User user) { userRepository.save(user); }
 }
