@@ -22,8 +22,8 @@ public class BlogController {
     }
 
     @PostMapping(value = "/blog")
-    public void addBlog(@RequestBody Blog blog, String token) {
-        blog.setCreator(userService.getUser(token).getUsername());
+    public void addBlog(@RequestParam String token, @RequestBody Blog blog) {
+        blog.setCreator(userService.getUserByToken(token).getUsername());
         blogService.addBlog(blog);
     }
 }

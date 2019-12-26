@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 import java.util.UUID;
 @RestController
 public class UserController {
@@ -15,10 +17,10 @@ public class UserController {
     private UserService userService;
 
     @GetMapping(value = "/login")
-    public String login(@RequestBody String username, String password) {
-        User user = userService.getUser(username);
-        if (user != null && user.getPassword() == password) {
-            return user.getToken();
+    public String login(@RequestBody User user) {
+        User temp = userService.getUser(user.getUsername());
+        if (temp != null && user.getPassword().equals(temp.getPassword())) {
+            return temp.getToken();
         }
         return null;
     }
@@ -29,13 +31,9 @@ public class UserController {
     }
 
     @PostMapping(value = "/register")
-    public String register(@RequestBody String username, String password) {
-        User user = userService.getUser(username);
-        System.out.print(username + " " + password);
-        if (user == null) {
-            user = new User();
-            user.setUsername(username);
-            user.setPassword(password);
+    public String register(@RequestBody User user) {
+        String username = user.getUsername();
+        if (userService.getUser(username) == null) {
             user.setToken(UUID.randomUUID().toString());
             userService.addUser(user);
             return user.getToken();
