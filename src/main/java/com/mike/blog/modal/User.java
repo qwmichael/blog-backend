@@ -3,7 +3,12 @@ package com.mike.blog.modal;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
+/**
+ * This is the entity for user
+ *
+ * @author Michael Ng
+ *
+ */
 @Entity
 public class User {
     @Id

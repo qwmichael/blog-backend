@@ -6,7 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+/**
+ * This is the service for blog
+ *
+ * @author Michael Ng
+ *
+ */
 @Service
 public class BlogService {
     @Autowired
@@ -18,5 +23,13 @@ public class BlogService {
 
     public void addBlog(Blog blog) {
         blogRepository.save(blog);
+    }
+
+    public Blog getBlog(long id) {
+       return blogRepository.findBlogById(id);
+    }
+
+    public void removeBlog(long id) {
+        blogRepository.delete(blogRepository.findBlogById(id));
     }
 }

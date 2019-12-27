@@ -4,7 +4,12 @@ import com.mike.blog.modal.User;
 import com.mike.blog.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+/**
+ * This is the service for user
+ *
+ * @author Michael Ng
+ *
+ */
 @Service
 public class UserService {
     @Autowired

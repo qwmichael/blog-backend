@@ -4,7 +4,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.Date;
-
+/**
+ * This is the entity for blog
+ *
+ * @author Michael Ng
+ *
+ */
 @Entity
 public class Blog {
     @Id
