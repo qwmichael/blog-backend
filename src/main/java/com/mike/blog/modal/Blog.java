@@ -1,8 +1,11 @@
 package com.mike.blog.modal;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
 import java.util.Date;
 /**
  * This is the entity for blog
@@ -16,12 +19,14 @@ public class Blog {
     @GeneratedValue //Auto generate primary key Id
     private long id;
 
+    @NotBlank
     private String title;
 
+    @NotBlank
     private String content;
-
+    @NotBlank
     private Date date;
-
+    @NotBlank
     private String creator;
 
     private String image;
@@ -35,6 +40,7 @@ public class Blog {
     }
 
     public Blog() {
+
     }
 
     public long getId() {

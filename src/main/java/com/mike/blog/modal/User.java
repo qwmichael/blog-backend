@@ -1,8 +1,13 @@
 package com.mike.blog.modal;
 
+
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+
 /**
  * This is the entity for user
  *
@@ -10,12 +15,16 @@ import javax.persistence.Id;
  *
  */
 @Entity
+@Table(name = "Bloguser")
 public class User {
     @Id
     @GeneratedValue
     private long id;
+    @NotBlank
     private String username;
+    @NotBlank
     private String password;
+    @NotBlank
     private String token;
 
     public long getId() {

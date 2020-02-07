@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+
 /**
  * This is the service for blog
  *
@@ -14,10 +16,14 @@ import java.util.List;
  */
 @Service
 public class BlogService {
-    @Autowired
-    private BlogRepository blogRepository;
 
-    public List<Blog> getBlogs() {
+    private BlogRepository blogRepository;
+    @Autowired
+    public BlogService(BlogRepository blogRepository) {
+        this.blogRepository = blogRepository;
+    }
+
+    public List<Blog> getBlog() {
         return blogRepository.findAll();
     }
 
@@ -25,11 +31,16 @@ public class BlogService {
         blogRepository.save(blog);
     }
 
-    public Blog getBlog(long id) {
+    public Optional<Blog> getBlog(long id) {
        return blogRepository.findBlogById(id);
     }
 
     public void removeBlog(long id) {
-        blogRepository.delete(blogRepository.findBlogById(id));
+        blogRepository.deleteById(id);
+    }
+
+    public void updateBlog(Blog blog) {
+        blogRepository.deleteById(blog.getId());
+        blogRepository.save(blog);
     }
 }
